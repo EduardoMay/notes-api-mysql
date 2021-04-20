@@ -1,0 +1,12 @@
+# phpstorm project files
+.idea
+
+# vscode project files
+.vscode
+
+# npm
+/node_modules
+package-lock.json
+
+# environment values
+.env
