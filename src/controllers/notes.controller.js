@@ -77,3 +77,32 @@ export const deleteNote = async ({ params }, res) => {
     res.send(error);
   }
 };
+
+/**
+ * Update note by id
+ * @method PATCH
+ * @param   {Request}   req
+ * @param   {Response}  res
+ */
+export const updateNote = async ({ body, params }, res) => {
+  try {
+    const { id } = params;
+    const { data } = body;
+
+    const result = await Notes.query().findById(id).patch(data);
+    const query = Notes.query().findById(id).patch(data).toKnexQuery();
+
+    if (result === 0) {
+      res
+        .status(400)
+        .json({ message: "Nose encontró registro en la base de datos" });
+    } else {
+      res.json({ result });
+    }
+
+    logDataAndQuery(query, result);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+};
