@@ -1,6 +1,12 @@
 import { logDataAndQuery } from "../helpers/logDataAndQuery";
 import Labels from "../models/Labels.js";
 
+/**
+ * Get all notes
+ * @method GET
+ * @param   {Request}   req
+ * @param   {Response}  res
+ */
 export const getAll = async (req, res) => {
   try {
     const data = await Labels.query();
@@ -15,6 +21,12 @@ export const getAll = async (req, res) => {
   }
 };
 
+/**
+ * Save new note into database
+ * @method POST
+ * @param   {Request}   req
+ * @param   {Response}  res
+ */
 export const post = async ({ body }, res) => {
   try {
     const { data } = body;
