@@ -21,3 +21,19 @@ export const getAll = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
+export const post = async ({ body }, res) => {
+  try {
+    const { data } = body;
+
+    const results = await Notes.query().insert(data);
+    const query = Notes.query().insert(data).toKnexQuery();
+
+    logDataAndQuery(query, results);
+
+    res.status(200).json({ results });
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+};

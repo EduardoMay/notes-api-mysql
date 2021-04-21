@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { getAll } from "../controllers/notes.controller";
+import { getAll, post } from "../controllers/notes.controller";
 
 const router = Router();
 
 router.get("/", getAll);
+router.post("/", post);
 
 export default router;
