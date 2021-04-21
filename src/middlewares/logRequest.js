@@ -9,6 +9,7 @@ export default morgan(function (tokens, req, res) {
   //log('params',req.params)
   //Always be empty, because the endpoint define its params and this is executed before
   log("query:", req.query);
+  log("params:", req.params);
   log("body:", req.body);
   log("res", tokens.res(req, res, "content-length"));
   log(tokens["response-time"](req, res), "ms");
