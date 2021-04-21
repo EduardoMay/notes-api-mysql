@@ -46,8 +46,8 @@ class Notes extends Model {
         relation: Model.HasManyRelation,
         modelClass: Labels,
         join: {
-          from: "notes.id",
-          to: "labels.id_note"
+          from: "notes.id_label",
+          to: "labels.id"
         }
       }
     };

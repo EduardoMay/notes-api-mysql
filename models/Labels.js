@@ -45,8 +45,8 @@ class Labels extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: Notes,
         join: {
-          from: "labels.id_note",
-          to: "notes.id"
+          from: "labels.id",
+          to: "notes.id_label"
         }
       }
     };
