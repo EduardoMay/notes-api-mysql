@@ -1,12 +1,13 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
 
 // Routes
-const NotesRouter = require("../routes/notes");
-const LabelsRouter = require("../routes/labels");
+import NotesRouter from "../routes/notes";
+import LabelsRouter from "../routes/labels";
 
 const app = express();
 

@@ -1,9 +1,9 @@
-const { Model } = require("objection");
-const knex = require("../database/knex");
+import { Model } from "objection";
+import knex from "../database/knex";
 
 Model.knex(knex);
 
-class Notes extends Model {
+export default class Notes extends Model {
   static get tableName() {
     return "notes";
   }
@@ -53,5 +53,3 @@ class Notes extends Model {
     };
   }
 }
-
-module.exports = Notes;

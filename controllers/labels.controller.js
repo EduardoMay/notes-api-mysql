@@ -1,6 +1,6 @@
-const Labels = require("../models/Labels");
+import Labels from "../models/Labels.js";
 
-const getAll = async (req, res) => {
+export const getAll = async (req, res) => {
   try {
     const data = await Labels.query();
 
@@ -11,7 +11,7 @@ const getAll = async (req, res) => {
   }
 };
 
-const post = async ({ body }, res) => {
+export const post = async ({ body }, res) => {
   try {
     const { data } = body;
 
@@ -23,9 +23,4 @@ const post = async ({ body }, res) => {
     console.log(error);
     res.status(500).send(error);
   }
-};
-
-module.exports = {
-  getAll,
-  post
 };
