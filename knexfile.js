@@ -1,5 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
+require("dotenv").config();
 
 console.log(process.env.KNEX_ACQUIRE_CONNECTION_TIME_OUT);
 
