@@ -19,8 +19,8 @@ export const post = async ({ body }, res) => {
   try {
     const { data } = body;
 
-    const result = await Labels.query().insertGraph(data);
-    const query = Labels.query().insertGraph(data).toKnexQuery();
+    const result = await Labels.query().insert(data);
+    const query = Labels.query().insert(data).toKnexQuery();
 
     logDataAndQuery(query, result);
 

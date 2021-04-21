@@ -12,7 +12,8 @@ export const logDataAndQuery = (query, data) => {
   log("\n");
   log(">>>>>>>>>>>>>>>>>>>>>Query and Data>>>>>>>>>>>>>>>>>>>>>");
   log("query:", query.toQuery());
-  log("data:", data);
+  log("data...");
+  console.table(data);
   log("<<<<<<<<<<<<<<<<<<<<<Query and Data<<<<<<<<<<<<<<<<<<<<<");
   log("\n");
 };
