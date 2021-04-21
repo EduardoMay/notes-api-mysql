@@ -49,3 +49,31 @@ export const post = async ({ body }, res) => {
     res.send(error);
   }
 };
+
+/**
+ * Delete note by id
+ * @method DELETE
+ * @param   {Request}   req
+ * @param   {Response}  res
+ */
+export const deleteNote = async ({ params }, res) => {
+  try {
+    const { id } = params;
+
+    const result = await Notes.query().deleteById(id);
+    const query = Notes.query().deleteById(id).toKnexQuery();
+
+    if (result === 0) {
+      res
+        .status(400)
+        .json({ message: "Nose encontró registro en la base de datos" });
+    } else {
+      res.json(result);
+    }
+
+    logDataAndQuery(query, result);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+};
