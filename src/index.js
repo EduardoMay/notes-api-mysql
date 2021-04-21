@@ -6,8 +6,8 @@ import cors from "cors";
 import morgan from "morgan";
 
 // Routes
-import NotesRouter from "../routes/notes";
-import LabelsRouter from "../routes/labels";
+import NotesRouter from "./routes/notes";
+import LabelsRouter from "./routes/labels";
 
 const app = express();
 
