@@ -1,3 +1,4 @@
+import { logDataAndQuery } from "../helpers/logDataAndQuery";
 import Notes from "../models/Notes";
 
 export const getAll = async (req, res) => {
@@ -7,6 +8,12 @@ export const getAll = async (req, res) => {
       "labels.id",
       "notes.id_label"
     );
+
+    const query = Notes.query()
+      .leftJoin("labels", "labels.id", "notes.id_label")
+      .toKnexQuery();
+
+    logDataAndQuery(query, data);
 
     res.status(200).json(data);
   } catch (error) {

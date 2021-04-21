@@ -1,8 +1,12 @@
+import { logDataAndQuery } from "../helpers/logDataAndQuery";
 import Labels from "../models/Labels.js";
 
 export const getAll = async (req, res) => {
   try {
     const data = await Labels.query();
+    const query = Labels.query().toKnexQuery();
+
+    logDataAndQuery(query, data);
 
     res.status(200).json(data);
   } catch (error) {
@@ -16,8 +20,10 @@ export const post = async ({ body }, res) => {
     const { data } = body;
 
     const result = await Labels.query().insertGraph(data);
+    const query = Labels.query().insertGraph(data).toKnexQuery();
 
-    console.log(result);
+    logDataAndQuery(query, result);
+
     res.status(200).json({ result });
   } catch (error) {
     console.log(error);
