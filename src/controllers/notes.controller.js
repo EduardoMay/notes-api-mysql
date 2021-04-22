@@ -34,7 +34,7 @@ export const getAll = async (req, res) => {
  * @param   {Request}   req
  * @param   {Response}  res
  */
-export const post = async ({ body }, res) => {
+export const postNote = async ({ body }, res) => {
   try {
     const { data } = body;
 
