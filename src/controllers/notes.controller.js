@@ -9,15 +9,9 @@ import Notes from "../models/Notes";
  */
 export const getAll = async (req, res) => {
   try {
-    const data = await Notes.query().leftJoin(
-      "labels",
-      "labels.id",
-      "notes.id_label"
-    );
+    const data = await Notes.query().withGraphFetched("labels");
 
-    const query = Notes.query()
-      .leftJoin("labels", "labels.id", "notes.id_label")
-      .toKnexQuery();
+    const query = Notes.query().withGraphFetched("labels").toKnexQuery();
 
     logDataAndQuery(query, data);
 

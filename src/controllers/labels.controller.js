@@ -9,8 +9,8 @@ import Labels from "../models/Labels.js";
  */
 export const getAll = async (req, res) => {
   try {
-    const data = await Labels.query();
-    const query = Labels.query().toKnexQuery();
+    const data = await Labels.query().withGraphFetched("notes");
+    const query = Labels.query().withGraphFetched("notes").toKnexQuery();
 
     logDataAndQuery(query, data);
 

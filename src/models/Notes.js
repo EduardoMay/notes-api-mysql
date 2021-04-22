@@ -1,5 +1,6 @@
 import { Model } from "objection";
 import knex from "../config/knex";
+import Labels from "./Labels";
 
 Model.knex(knex);
 
@@ -39,8 +40,6 @@ export default class Notes extends Model {
   }
 
   static get relationMappings() {
-    const Labels = require("./Labels");
-
     return {
       labels: {
         relation: Model.HasManyRelation,

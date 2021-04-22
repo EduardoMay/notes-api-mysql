@@ -1,5 +1,6 @@
 import { Model } from "objection";
 import knex from "../config/knex";
+import Notes from "./Notes";
 
 Model.knex(knex);
 
@@ -38,10 +39,8 @@ export default class Labels extends Model {
   }
 
   static get relationMappings() {
-    const Notes = require("./Notes");
-
     return {
-      parent_skus: {
+      notes: {
         relation: Model.BelongsToOneRelation,
         modelClass: Notes,
         join: {
