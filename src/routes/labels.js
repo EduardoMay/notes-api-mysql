@@ -1,9 +1,16 @@
 import { Router } from "express";
-import { getAll, post } from "../controllers/labels.controller";
+import {
+  getAll,
+  postLabel,
+  updateLabel,
+  deleteLabel
+} from "../controllers/labels.controller";
 
 const router = Router();
 
 router.get("/", getAll);
-router.post("/", post);
+router.post("/", postLabel);
+router.patch("/", updateLabel);
+router.post("/", deleteLabel);
 
 export default router;
