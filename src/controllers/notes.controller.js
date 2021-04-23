@@ -90,13 +90,12 @@ export const deleteNote = async ({ params }, res) => {
  * @param   {Request}   req
  * @param   {Response}  res
  */
-export const updateNote = async ({ body, params }, res) => {
+export const updateNote = async ({ body }, res) => {
   try {
-    const { id } = params;
     const { data } = body;
 
-    const result = await Notes.query().findById(id).patch(data);
-    const query = Notes.query().findById(id).patch(data).toKnexQuery();
+    const result = await Notes.query().upsertGraph(data);
+    // const query = Notes.query().upsertGraph(data).toKnexQuery();
 
     if (result === 0) {
       res
@@ -106,7 +105,7 @@ export const updateNote = async ({ body, params }, res) => {
       res.json({ result });
     }
 
-    logDataAndQuery(query, result);
+    // logDataAndQuery(query, result);
   } catch (error) {
     console.log(error);
     res.send(error);

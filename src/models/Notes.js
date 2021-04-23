@@ -2,6 +2,7 @@ import { Model } from "objection";
 import knex from "../config/knex";
 import Labels from "./Labels";
 import { getDatetime } from "./../helpers/getDatetime";
+import NotesLabels from "./NotesLabels";
 
 Model.knex(knex);
 
@@ -44,6 +45,14 @@ export default class Notes extends Model {
             to: "notes_labels.id_label"
           },
           to: "labels.id"
+        }
+      },
+      notes_labels: {
+        relation: Model.HasManyRelation,
+        modelClass: NotesLabels,
+        join: {
+          from: "notes.id",
+          to: "notes_labels.id_note"
         }
       }
     };
