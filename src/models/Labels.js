@@ -1,5 +1,6 @@
 import { Model } from "objection";
 import knex from "../config/knex";
+import { getDatetime } from "../helpers/getDatetime";
 import Notes from "./Notes";
 
 Model.knex(knex);
@@ -10,18 +11,11 @@ export default class Labels extends Model {
   }
 
   $beforeInsert() {
-    this.created_at = this.getDatetime();
+    this.created_at = getDatetime();
   }
 
   $beforeUpdate() {
-    this.updated_at = this.getDatetime();
-  }
-
-  getDatetime() {
-    const date = new Date();
-    return `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}  ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    this.updated_at = getDatetime();
   }
 
   static get jsonSchema() {
