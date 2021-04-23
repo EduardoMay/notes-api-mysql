@@ -1,5 +1,6 @@
 import { logDataAndQuery } from "../helpers/logDataAndQuery";
 import Notes from "../models/Notes";
+import NotesLabels from "../models/NotesLabels";
 
 /**
  * Get all notes
@@ -30,14 +31,25 @@ export const getAll = async (req, res) => {
  */
 export const postNote = async ({ body }, res) => {
   try {
-    const { data } = body;
+    const { note, idLabel } = body;
 
-    const results = await Notes.query().insert(data);
-    const query = Notes.query().insert(data).toKnexQuery();
+    const resultNote = await Notes.query().insert(note);
+    const queryNote = Notes.query().insert(note).toKnexQuery();
 
-    logDataAndQuery(query, results);
+    logDataAndQuery(queryNote, resultNote);
 
-    res.status(200).json({ results });
+    if (idLabel !== 0) {
+      const note_label = { id_note: resultNote.id, id_label: Number(idLabel) };
+
+      const resultLabel = await NotesLabels.query().insert(note_label);
+      const queryLabel = NotesLabels.query().insert(note_label).toKnexQuery();
+
+      logDataAndQuery(queryLabel, resultLabel);
+
+      return res.status(200).json({ resultNote, resultLabel });
+    }
+
+    res.status(200).json({ resultNote });
   } catch (error) {
     console.log(error);
     res.send(error);
