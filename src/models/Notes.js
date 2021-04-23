@@ -42,10 +42,14 @@ export default class Notes extends Model {
   static get relationMappings() {
     return {
       labels: {
-        relation: Model.HasManyRelation,
+        relation: Model.ManyToManyRelation,
         modelClass: Labels,
         join: {
-          from: "notes.id_label",
+          from: "notes.id",
+          through: {
+            from: "notes_labels.id_note",
+            to: "notes_labels.id_label"
+          },
           to: "labels.id"
         }
       }
