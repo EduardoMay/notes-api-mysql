@@ -23,7 +23,9 @@ Labels
 
 # Features
 
-- [ ] Sub categorías
+- [ ] Agregar usuarios para poder mostrar los labels del usuario
+- [ ] Crear tabla users, campos: id, disp
+- [ ] Vincular tabla users a las tablas notes y labels
 
 # Fix
 
