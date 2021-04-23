@@ -9,8 +9,8 @@ import {
 const router = Router();
 
 router.get("/", getAll);
-router.post("/", postLabel);
-router.patch("/", updateLabel);
-router.post("/", deleteLabel);
+router.post("/:id", postLabel);
+router.patch("/:id", updateLabel);
+router.delete("/:id", deleteLabel);
 
 export default router;
